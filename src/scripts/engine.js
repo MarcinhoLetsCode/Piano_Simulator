@@ -14,6 +14,12 @@ const playTune = (key) => {
     //console.log(audio);
     //audio.src = ("./src/tunes/"+key+".wav");
     audio.play();
+
+    const clickedKey = document.querySelector(`[data-key="${key}"]`);
+    clickedKey.classList.add("active");
+    setTimeout(()=> {
+        clickedKey.classList.remove("active");
+    }, 150);
 };
 
 pianoKeys.forEach((key)=>{
