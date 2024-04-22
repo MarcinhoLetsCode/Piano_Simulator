@@ -1,5 +1,7 @@
 const pianoKeys = document.querySelectorAll(".piano-keys .key")
-// console.log(pianoKeys);
+//console.log(pianoKeys);
+const volumeSlider = document.querySelector(".volume-slider input")
+//console.log(volumeSlider);
 
 let mapedKeys = [];
 let audio = new Audio("./src/tunes/");
@@ -16,6 +18,8 @@ const playTune = (key) => {
     //audio.src = ("./src/tunes/"+key+".wav");
     audio.play();
 
+    //console.log(key);
+    //console.log(`[data-key="${key}"]`);
     const clickedKey = document.querySelector(`[data-key="${key}"]`);
     clickedKey.classList.add("active");
     setTimeout(()=> {
@@ -24,13 +28,12 @@ const playTune = (key) => {
 };
 
 pianoKeys.forEach((key)=>{
-    //console.log(key);
     //console.log(key.dataset.key);
     key.addEventListener("click",()=> playTune(key.dataset.key));
     mapedKeys.push(key.dataset.key);
     //key.addEventListener("click",()=> console.log(key.dataset.key));
     
-    mapedKeys.length === 17 ? console.log(mapedKeys) : null;
+    //mapedKeys.length === 17 ? console.log(mapedKeys) : null;
 
     //console.log(mapedKeys);
 });
@@ -44,3 +47,15 @@ document.addEventListener("keydown",(e) => {
     }
     
 });
+
+const handleVolume = (e)=>{
+    //var volumeLevel = (parseFloat(e.target.value).toFixed(2));
+    //console.log(volumeLevel);
+    //console.log(e.target.value);
+
+    audio.volume = e.target.value
+    console.log(parseInt((e.target.value)*100));
+
+}
+
+volumeSlider.addEventListener("input", handleVolume)
